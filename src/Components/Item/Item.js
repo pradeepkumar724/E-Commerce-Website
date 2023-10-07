@@ -6,7 +6,12 @@ const Item = (props) => {
   return (
     <div className={styles.item}>
       <Link to={`/product/${props.id}`}>
-        <img src={props.image} alt="img" className={styles.image} />
+        <img
+          src={props.image}
+          alt="img"
+          className={styles.image}
+          onClick={window.scrollTo(0, 0)}
+        />
       </Link>
 
       <p>{props.name}</p>
