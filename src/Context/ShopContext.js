@@ -22,6 +22,7 @@ const ShopContextProvider = (props) => {
   };
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    // console.log(cartItems);
   };
 
   const getTotalCartAmount = () => {
@@ -31,16 +32,26 @@ const ShopContextProvider = (props) => {
         let itemInfo = all_products.find(
           (product) => product.id === Number(item)
         );
-
         totalAmount += itemInfo.new_price * cartItems[item];
       }
-      // console.log(totalAmount);
+
       return totalAmount;
     }
   };
-  console.log(getTotalCartAmount());
+  // console.log(getTotalCartAmount());
+
+  const getTotalCartItems = () => {
+    let totalItem = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItem += cartItems[item];
+      }
+    }
+    return totalItem;
+  };
 
   const contextValue = {
+    getTotalCartItems,
     getTotalCartAmount,
     all_products,
     cartItems,
